@@ -1,1 +1,4 @@
 .vscode/settings.json
+__pycache__/publisher.cpython-36.pyc
+__pycache__/subscriber.cpython-36.pyc
+__pycache__/keyController.cpython-36.pyc

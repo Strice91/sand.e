@@ -9,4 +9,4 @@ class Publisher:
         self.client.connect(addr, port)
 
     def mqttPublish(self, topic, msg):
-        self.client.publish(ch, msg)
+        self.client.publish(topic, msg)
