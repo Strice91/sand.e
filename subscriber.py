@@ -1,20 +1,24 @@
 import paho.mqtt.client as mqtt
-import time
+import random
 
-def on_message(client, userdata, message):
-    print("Message: ", str(message.payload.decode("utf-8")))
+class Subscriber:
+    def __init__(self):
+        self.channel = None
+        self.client = mqtt.Client(str(random.randint(0xf, 0xffff)))
 
-def on_connect(client, userdata, flags, rc):
-    print("Connected with result: " + str(rc))
-    client.subscribe("sand.e.test")
+    def on_con(self, client, userdata, flags, rc):
+        print("Connected with result: " + str(rc))
+        self.client.subscribe(self.channel)
 
-print("Start Subscriber")
+    def mqttSubscribe(self, adress, port, onMSG, ch):
+        print("Start subscription")
+        self.channel = ch
+        self.client.on_connect = self.on_con
+        self.client.on_message = onMSG
+        self.client.connect(adress, port)
+        self.client.loop_forever()
 
-client_name="nsibfudqnwoezvfnoqwfez33240921"
-
-client = mqtt.Client(client_name)
-client.on_connect = on_connect
-client.on_message = on_message
-client.connect("mi5.itq.de", port=1883)
-
-client.loop_forever()
+    def mqttUnsubscribe(self):
+        self.client.loop_stop()
+        self.client.unsubscribe()
+        self.client.disconnect()

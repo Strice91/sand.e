@@ -1,19 +1,12 @@
 import paho.mqtt.client as mqtt
-import time
+import random
 
-print("Start Publisher")
+class Publisher:
 
-client_name="kjncsifgnfoiweuhf4334235"
+    def __init__(self, addr, port):
+        print("Start publisher")
+        self.client = mqtt.Client(str(random.randint(0xf, 0xffff)))
+        self.client.connect(addr, port)
 
-client = mqtt.Client(client_name)
-
-client.connect("mi5.itq.de", port=1883)
-
-counter = 0
-
-client.loop_start()
-
-while True:
-    time.sleep(2)
-    client.publish("sand.e.test", "Test{}".format(counter))
-    counter+=1
+    def mqttPublish(self, topic, msg):
+        self.client.publish(ch, msg)
