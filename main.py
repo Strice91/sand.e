@@ -2,23 +2,25 @@ from subscriber import Subscriber
 from publisher import Publisher
 from keyController import KeyConroller
 import time
-import _thread
+import threading
 
 def on_message(client, userdata, message):
     print(str(message.payload))
 
+def refresh():
+    pubKeyboard.mqttPublish("sand.e/motor/V", kc.v)
+    pubKeyboard.mqttPublish("sand.e/motor/W", kc.w)
+    threading.Timer(1, refresh, ()).start()
+
 adress = "mi5.itq.de"
 port = 1883
-
-#sub1 = Subscriber()
-#sub1.mqttSubscribe(adress, port, on_message, "sand.e")
 
 pubKeyboard = Publisher(adress, port)
 kc = KeyConroller()
 
-_thread.start_new_thread(kc.drive, ())
+drive = threading.Thread(target=kc.drive)
+drive.start()
+refresh()
 
 while True:
-    pubKeyboard.mqttPublish("sand.e/motor/V", kc.v)
-    pubKeyboard.mqttPublish("sand.e/motor/W", kc.w)
-    time.sleep(1)
+    pass
