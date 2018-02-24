@@ -11,8 +11,9 @@ client.connect("mi5.itq.de", port=1883)
 
 counter = 0
 
-while(1):
-    print("Test{}".format(counter))
-    client.publish("sand.e/test", "Test{}".format(counter))
-    counter+=1
+client.loop_start()
+
+while True:
     time.sleep(2)
+    client.publish("sand.e.test", "Test{}".format(counter))
+    counter+=1
