@@ -5,27 +5,36 @@ class KeyConroller:
     def __init__(self):
         self.v = 0
         self.w = 0
+        self.io = True
 
     def on_press(self, key):
         if(key == Key.up):
-            self.v = 127
+            self.v = 100
         if(key == Key.down):
-            self.v = 0
+            self.v = -100
         if(key == Key.left):
-            self.w = -127
+            self.w = -100
         if(key == Key.right):
-           self.w = 127
+           self.w = 100
 
     def on_release(self, key):
         if key == Key.esc:
             self.v = 0
             self.w = 0
-            # Stop listener
+            self.io = False
             return False
     
         if(key == Key.space):
             self.v = 0
             self.w = 0
+        if(key == Key.up):
+            self.v = 0
+        if(key == Key.down):
+            self.v = 0
+        if(key == Key.left):
+            self.w = 0
+        if(key == Key.right):
+           self.w = 0
 
     def drive(self):
         # Collect events until released

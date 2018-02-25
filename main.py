@@ -4,13 +4,28 @@ from keyController import KeyConroller
 import time
 import threading
 
+vPrev = 0
+wPrev = 0
+t = 0
+
 def on_message(client, userdata, message):
     print(str(message.payload))
 
-def refresh():
-    pubKeyboard.mqttPublish("sand.e/motor/V", kc.v)
-    pubKeyboard.mqttPublish("sand.e/motor/W", kc.w)
-    threading.Timer(1, refresh, ()).start()
+def refresh(controller):
+    if controller.io:
+        global t
+        global vPrev
+        global wPrev
+        t += 1
+        if (vPrev != kc.v) or (t >= 200):
+            pubKeyboard.mqttPublish("sand.e/motor/v", kc.v)
+            vPrev = kc.v
+            t = 0
+        if (wPrev != kc.w):
+            pubKeyboard.mqttPublish("sand.e/motor/w", kc.w)
+            wPrev = kc.w
+            t =0
+        threading.Timer(0.001, refresh, args=(controller,)).start()
 
 adress = "mi5.itq.de"
 port = 1883
@@ -20,7 +35,9 @@ kc = KeyConroller()
 
 drive = threading.Thread(target=kc.drive)
 drive.start()
-refresh()
+refresh(kc)
 
-while True:
+while kc.io:
     pass
+
+print("Turn Off")
