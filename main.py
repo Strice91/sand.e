@@ -32,7 +32,7 @@ def refresh(controller):
 adress = "mi5.itq.de"
 port = 1883
 
-pubSC = SerialCon('/dev/ttyAMA0')
+pubSC = SerialCon('/dev/ttyUSB0')
 
 pubKeyboard = Publisher(adress, port)
 kc = KeyConroller()

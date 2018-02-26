@@ -4,7 +4,7 @@ import serial
 class SerialCon:
     
     def __init__(self, serialport):
-        self.con = serial.Serial(serialport, baudrate=115200, parity=serial.PARITY_NONE, stopbits=serial.STOPBITS_ONE, bytesize=serial.EIGHTBITS)
+        self.con = serial.Serial(serialport, baudrate=115200)
         self.data = 0
 
     def send(self, data):
