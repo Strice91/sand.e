@@ -20,7 +20,6 @@ def refresh(controller):
         t += 1
         if (vPrev != kc.v) or (t >= 200):
             pubKeyboard.mqttPublish("sand.e/motor/v", kc.v)
-            pubSC.send(kc.v)
             vPrev = kc.v
             t = 0
         if (wPrev != kc.w):
@@ -31,8 +30,6 @@ def refresh(controller):
 
 adress = "mi5.itq.de"
 port = 1883
-
-pubSC = SerialCon('/dev/ttyUSB0')
 
 pubKeyboard = Publisher(adress, port)
 kc = KeyConroller()
