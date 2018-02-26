@@ -4,7 +4,7 @@ import serial
 class SerialCon:
     
     def __init__(self, serialport):
-        self.con = serial.Serial(serialport, baudrate=115200)
+        self.con = serial.Serial(serialport, baudrate=9600)
         self.data = 0
 
     def send(self, data):

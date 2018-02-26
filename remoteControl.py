@@ -23,7 +23,7 @@ def refresh(controller):
             vPrev = kc.v
             t = 0
         if (wPrev != kc.w):
-            pubKeyboard.mqttPublish("sand.e/motor/w", kc.w)
+            pubKeyboard.mqttPublish("sand.e/motor/v", kc.w)
             wPrev = kc.w
             t =0
         threading.Timer(0.001, refresh, args=(controller,)).start()
