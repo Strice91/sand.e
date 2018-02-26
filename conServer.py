@@ -28,11 +28,12 @@ def refresh():
 adress = "mi5.itq.de"
 port = 1883
 
-pubSC = SerialCon('/dev/ttyUSB0')
+pubSC = SerialCon('/dev/ttyACM0')
 
 sub = Subscriber()
 pub = Publisher(adress, port)
 sub.mqttSubscribe(adress, port, on_message, "sand.e/motor/v")
+sub.mqttSubscribe(adress, port, on_message, "sand.e/motor/w")
 refresh(kc)
 
 while True:

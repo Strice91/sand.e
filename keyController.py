@@ -3,38 +3,38 @@ from pynput.keyboard import Key, Listener
 class KeyConroller:
 
     def __init__(self):
-        self.v = "S"
-        self.w = "S"
+        self.v = "s"
+        self.w = "s"
         self.io = True
 
     def on_press(self, key):
         if(key == Key.up):
-            self.v = "D"
+            self.v = "d"
         if(key == Key.down):
-            self.v = "R"
+            self.v = "b"
         if(key == Key.left):
-            self.w = "L"
+            self.w = "l"
         if(key == Key.right):
-           self.w = "R"
+           self.w = "r"
 
     def on_release(self, key):
         if key == Key.esc:
-            self.v = "S"
-            self.w = "S"
+            self.v = "s"
+            self.w = "s"
             self.io = False
             return False
     
         if(key == Key.space):
-            self.v = "S"
-            self.w = "S"
+            self.v = "s"
+            self.w = "s"
         if(key == Key.up):
-            self.v = "S"
+            self.v = "s"
         if(key == Key.down):
-            self.v = "S"
+            self.v = "s"
         if(key == Key.left):
-            self.w = "S"
+            self.w = "s"
         if(key == Key.right):
-           self.w = "S"
+           self.w = "s"
 
     def drive(self):
         # Collect events until released
