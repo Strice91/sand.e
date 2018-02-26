@@ -1,6 +1,5 @@
 from subscriber import Subscriber
 from publisher import Publisher
-from keyController import KeyConroller
 from serialCon import SerialCon
 import time
 import threading
