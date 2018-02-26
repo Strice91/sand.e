@@ -5,8 +5,8 @@ from serialCon import SerialCon
 import time
 import threading
 
-vPrev = 0
-wPrev = 0
+vPrev = ""
+wPrev = ""
 t = 0
 
 def on_message(client, userdata, message):
