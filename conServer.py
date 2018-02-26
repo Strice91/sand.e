@@ -30,10 +30,11 @@ port = 1883
 
 pubSC = SerialCon('/dev/ttyACM0')
 
-sub = Subscriber()
+sub1 = Subscriber()
+sub2 = Subscriber()
 pub = Publisher(adress, port)
-sub.mqttSubscribe(adress, port, on_message, "sand.e/motor/v")
-sub.mqttSubscribe(adress, port, on_message, "sand.e/motor/w")
+sub1.mqttSubscribe(adress, port, on_message, "sand.e/motor/v")
+sub2.mqttSubscribe(adress, port, on_message, "sand.e/motor/w")
 refresh(kc)
 
 while True:
