@@ -11,7 +11,7 @@ subData = 0
 
 def on_message(client, userdata, message):
     print(message.payload)
-    subData = int(message.payload)
+    subData = message.payload
 
 def refresh():
     global t
